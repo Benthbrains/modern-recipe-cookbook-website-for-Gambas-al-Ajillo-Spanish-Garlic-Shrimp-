@@ -209,17 +209,14 @@ footer {
             </p>
 
             <audio id="recipeAudio" controls preload="metadata">
-
                 <source
-                    src="./synthesize.mp3"
+                    src="https://raw.githubusercontent.com/Benthbrains/modern-recipe-cookbook-website-for-Gambas-al-Ajillo-Spanish-Garlic-Shrimp-/main/synthesize.mp3"
                     type="audio/mpeg"
                 >
-
                 Your browser does not support audio.
-
             </audio>
 
-            <p id="audioMessage">
+            <p id="audioMessage" aria-live="polite">
                 Press play to listen to the recipe.
             </p>
 
@@ -251,26 +248,19 @@ footer {
 // AUDIO PLAYER
 
 const audio = document.getElementById("recipeAudio");
+const audioMessage = document.getElementById("audioMessage");
 
 audio.addEventListener("error", function() {
-
-    document.getElementById("audioMessage").innerText =
-        "Could not load synthesize.mp3. Check that the MP3 is uploaded in the website folder and try again.";
-
+    audioMessage.innerText =
+        "The narration could not be loaded. Please check your connection and try again.";
 });
 
 audio.addEventListener("play", function() {
-
-    document.getElementById("audioMessage").innerText =
-        "Enjoy listening to your recipe!";
-
+    audioMessage.innerText = "Enjoy listening to your recipe!";
 });
 
 audio.addEventListener("ended", function() {
-
-    document.getElementById("audioMessage").innerText =
-        "Narration finished. Happy cooking!";
-
+    audioMessage.innerText = "Narration finished. Happy cooking!";
 });
 
 </script>
