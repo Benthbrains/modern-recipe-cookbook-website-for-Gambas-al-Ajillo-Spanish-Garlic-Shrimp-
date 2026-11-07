@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 <title>My Mediterranean Cookbook</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -22,8 +24,8 @@ body {
 header {
     background: #354b36;
     color: white;
-    padding: 25px;
     text-align: center;
+    padding: 28px;
 }
 
 header h1 {
@@ -99,9 +101,15 @@ ul, ol {
 
 .listen {
     background: #f3f0e8;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
     text-align: center;
+}
+
+audio {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 15px;
 }
 
 footer {
@@ -109,6 +117,11 @@ footer {
     padding: 20px;
     color: #777;
 }
+
+.source {
+    color: #354b36;
+}
+
 </style>
 </head>
 
@@ -202,11 +215,12 @@ footer {
 
         <hr>
 
-        <!-- INSTRUCTIONS -->
+        <!-- COOKING INSTRUCTIONS -->
 
         <h3>How to Prepare</h3>
 
         <ol>
+
             <li>
                 Pat the shrimp dry with paper towels
                 and season with salt.
@@ -235,35 +249,43 @@ footer {
                 Serve warm with crusty bread
                 and enjoy your Spanish garlic shrimp!
             </li>
+
         </ol>
 
         <hr>
 
-        <!-- READ ALOUD -->
+        <!-- AUDIO PLAYER -->
 
         <div class="listen">
 
-            <h3>Listen to the Recipe</h3>
+            <h3>🎙 Listen to the Recipe</h3>
 
             <p>
-                Sit back, relax and let our British
-                documentary-style narrator guide you
-                through the recipe.
+                Relax and enjoy a British documentary-style
+                narration of this Mediterranean classic.
             </p>
 
-            <button onclick="readRecipe()">
-                🔊 Read Recipe Aloud
-            </button>
+            <audio id="recipeAudio" controls preload="metadata">
 
-            <button onclick="stopReading()">
-                ⏹ Stop
-            </button>
+                <source
+                    src="gambas-narration.mp3"
+                    type="audio/mpeg"
+                >
+
+                Your browser does not support audio.
+
+            </audio>
+
+            <p id="audioMessage">
+                Press play to listen to the recipe.
+            </p>
 
         </div>
 
         <br>
 
         <a
+            class="source"
             href="https://www.themediterraneandish.com/gambas-al-ajillo-spanish-shrimp/"
             target="_blank"
             rel="noopener noreferrer"
@@ -275,12 +297,11 @@ footer {
 
 </div>
 
+
 <footer>
     My Mediterranean Cookbook © 2026
 </footer>
 
-
-<!-- WEBSITE FUNCTIONALITY -->
 
 <script>
 
@@ -288,8 +309,11 @@ footer {
 
 function joinSite() {
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
 
     if (name === "" || email === "") {
         alert("Please enter your name and email!");
@@ -312,79 +336,30 @@ function joinSite() {
 }
 
 
-// READ RECIPE ALOUD
+// AUDIO PLAYER
 
-function readRecipe() {
+const audio = document.getElementById("recipeAudio");
 
-    window.speechSynthesis.cancel();
+audio.addEventListener("error", function() {
 
-    const text = `
-    Welcome to My Mediterranean Cookbook.
+    document.getElementById("audioMessage").innerText =
+        "Audio file not found. Please add gambas-narration.mp3 to your website folder.";
 
-    Today, we travel to the beautiful country of Spain,
-    to discover a wonderful traditional dish.
+});
 
-    Gambas al Ajillo.
-    Spanish Garlic Shrimp.
+audio.addEventListener("play", function() {
 
-    A beautiful combination of fresh shrimp,
-    golden olive oil and fragrant garlic.
+    document.getElementById("audioMessage").innerText =
+        "Enjoy listening to your recipe!";
 
-    First, prepare your fresh shrimp
-    and season them with salt.
+});
 
-    Heat olive oil in a pan over medium heat.
-    Add the chopped garlic and red pepper flakes.
-    Allow the flavours to gently develop.
+audio.addEventListener("ended", function() {
 
-    Now, introduce the shrimp.
-    Add paprika and cook until beautifully pink.
+    document.getElementById("audioMessage").innerText =
+        "Narration finished. Happy cooking!";
 
-    Remove the pan from the heat.
-    Add lemon juice, sherry and fresh parsley.
-
-    And there we have it.
-    A wonderful Spanish classic.
-
-    Serve warm with crusty bread.
-    Enjoy your taste of the Mediterranean.
-
-    Happy cooking.
-    `;
-
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-GB";
-    speech.rate = 0.82;
-    speech.pitch = 0.85;
-    speech.volume = 1;
-
-    const voices = window.speechSynthesis.getVoices();
-
-    let voice = voices.find(v =>
-        v.lang === "en-GB" &&
-        /Google UK English Male/i.test(v.name)
-    );
-
-    if (!voice) {
-        voice = voices.find(v =>
-            v.lang === "en-GB"
-        );
-    }
-
-    if (voice) {
-        speech.voice = voice;
-    }
-
-    window.speechSynthesis.speak(speech);
-}
-
-
-// STOP VOICE
-
-function stopReading() {
-    window.speechSynthesis.cancel();
-}
+});
 
 </script>
 
