@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mediterranean Cookbook</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #faf7f0;
+    color: #333;
+}
+
+header {
+    background: #354b36;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+.container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 20px;
+}
+
+.join {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 12px;
+    margin: 8px;
+    width: 80%;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background: #354b36;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    margin: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #587454;
+}
+
+.recipe {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.recipe img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #354b36;
+}
+
+h3 {
+    color: #8b5b32;
+}
+
+ul, ol {
+    line-height: 1.9;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Mediterranean Cookbook</h1>
+    <p>Discover simple and delicious Mediterranean recipes</p>
+</header>
+
+<div class="container">
+
+    <!-- JOIN SECTION -->
+
+    <div class="join" id="joinSection">
+        <h2>Welcome to the Cookbook!</h2>
+        <p>Join us and discover delicious recipes.</p>
+
+        <input type="text" id="name"
+        placeholder="Enter your name">
+
+        <br>
+
+        <input type="email" id="email"
+        placeholder="Enter your email">
+
+        <br>
+
+        <button onclick="joinSite()">Join Now</button>
+    </div>
+
+    <!-- RECIPE SECTION -->
+
+    <div class="recipe hidden" id="recipeSection">
+
+        <h2 id="welcome"></h2>
+
+        <h2>Gambas al Ajillo</h2>
+        <p><i>Spanish Garlic Shrimp</i></p>
+
+        <img
+        src="https://www.themediterraneandish.com/wp-content/uploads/2022/08/Gambas-al-Ajillo-7.jpg"
+        alt="Spanish garlic shrimp">
+
+        <p>
+        A traditional Spanish dish made with juicy shrimp,
+        garlic, olive oil, paprika and lemon.
+        Perfect as a starter or a light meal!
+        </p>
+
+        <p><b>Preparation:</b> 5 minutes</p>
+        <p><b>Cooking:</b> 5 minutes</p>
+        <p><b>Total time:</b> 10 minutes</p>
+        <p><b>Servings:</b> 4–6 people</p>
+
+        <hr>
+
+        <h3>Ingredients</h3>
+
+        <ul>
+            <li>1 pound large raw shrimp, peeled and deveined</li>
+            <li>Salt to taste</li>
+            <li>½ cup extra virgin olive oil</li>
+            <li>10 garlic cloves, chopped</li>
+            <li>1 teaspoon red pepper flakes</li>
+            <li>1 teaspoon sweet paprika</li>
+            <li>2 tablespoons dry sherry or white wine</li>
+            <li>Juice of ½ lemon</li>
+            <li>½ cup fresh chopped parsley</li>
+        </ul>
+
+        <hr>
+
+        <h3>How to Prepare</h3>
+
+        <ol>
+            <li>
+                Pat the shrimp dry with paper towels
+                and season with salt.
+            </li>
+
+            <li>
+                Heat olive oil in a pan over medium heat.
+                Add chopped garlic and red pepper flakes.
+                Cook for 30–60 seconds without burning the garlic.
+            </li>
+
+            <li>
+                Add the shrimp and paprika.
+                Cook for about 3 minutes, turning regularly,
+                until the shrimp are pink and opaque.
+            </li>
+
+            <li>
+                Remove the pan from the heat.
+                Add the sherry, lemon juice and fresh parsley.
+                Mix everything together.
+            </li>
+
+            <li>
+                Serve warm with crusty bread
+                and enjoy your Spanish garlic shrimp!
+            </li>
+        </ol>
+
+        <hr>
+
+        <h3>Listen to the Recipe</h3>
+
+        <p>
+        Want to cook without reading?
+        Let the cookbook read the recipe to you!
+        </p>
+
+        <button onclick="readRecipe()">
+            🔊 Read Aloud
+        </button>
+
+        <button onclick="stopReading()">
+            ⏹ Stop
+        </button>
+
+        <br><br>
+
+        <a href="https://www.themediterraneandish.com/gambas-al-ajillo-spanish-shrimp/"
+        target="_blank">
+            View Original Recipe
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+    My Mediterranean Cookbook © 2026
+</footer>
+
+<script>
+
+function joinSite() {
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    if (name.trim() === "" || email.trim() === "") {
+        alert("Please enter your name and email!");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        alert("Please enter a valid email address!");
+        return;
+    }
+
+    document.getElementById("joinSection").classList.add("hidden");
+
+    document.getElementById("recipeSection").classList.remove("hidden");
+
+    document.getElementById("welcome").innerText =
+        "Welcome, " + name + "! Happy Cooking ❤️";
+}
+
+function readRecipe() {
+
+    stopReading();
+
+    const text = `
+    Welcome to My Mediterranean Cookbook.
+
+    Today we are making Gambas al Ajillo,
+    also known as Spanish Garlic Shrimp.
+
+    This delicious Spanish dish takes about
+    ten minutes to prepare and cook.
+
+    First, let's look at the ingredients.
+
+    You need one pound of raw shrimp,
+    half a cup of olive oil,
+    ten chopped garlic cloves,
+    one teaspoon of red pepper flakes,
+    one teaspoon of paprika,
+    two tablespoons of dry sherry or white wine,
+    half a lemon and half a cup of fresh parsley.
+
+    Now let's start cooking.
+
+    Step one.
+    Pat the shrimp dry and season with salt.
+
+    Step two.
+    Heat olive oil in a pan over medium heat.
+    Add the chopped garlic and red pepper flakes.
+    Cook for thirty to sixty seconds.
+    Be careful not to burn the garlic.
+
+    Step three.
+    Add the shrimp and paprika.
+    Cook for about three minutes,
+    until the shrimp turn pink and opaque.
+
+    Step four.
+    Remove the pan from the heat.
+    Add the sherry, lemon juice and parsley.
+    Mix everything together.
+
+    Finally, serve your Gambas al Ajillo warm
+    with some crusty bread.
+
+    Enjoy your delicious Spanish meal.
+    Happy cooking!
+    `;
+
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-US";
+    speech.rate = 0.9;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+}
+
+</script>
+
+</body>
+</html>
