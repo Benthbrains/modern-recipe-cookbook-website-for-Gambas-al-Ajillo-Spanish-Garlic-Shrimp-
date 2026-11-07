@@ -268,7 +268,7 @@ footer {
             <audio id="recipeAudio" controls preload="metadata">
 
                 <source
-                    src="gambas-narration.mp3"
+                    src="./synthesize.mp3"
                     type="audio/mpeg"
                 >
 
@@ -340,10 +340,10 @@ function joinSite() {
 
 const audio = document.getElementById("recipeAudio");
 
-audio.addEventListener("error", function() {
+ audio.addEventListener("error", function() {
 
     document.getElementById("audioMessage").innerText =
-        "Audio file not found. Please add gambas-narration.mp3 to your website folder.";
+        "Could not load synthesize.mp3. Check that the MP3 is uploaded in the website folder and try again.";
 
 });
 
@@ -365,4 +365,3 @@ audio.addEventListener("ended", function() {
 
 </body>
 </html>
-
