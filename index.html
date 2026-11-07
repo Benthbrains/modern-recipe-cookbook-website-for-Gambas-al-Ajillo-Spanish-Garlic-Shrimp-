@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,22 +36,6 @@ header h1 {
     max-width: 850px;
     margin: 35px auto;
     padding: 20px;
-}
-
-.join {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-input {
-    padding: 13px;
-    margin: 10px;
-    width: 85%;
-    max-width: 350px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
 }
 
 button {
@@ -95,10 +78,6 @@ ul, ol {
     line-height: 1.9;
 }
 
-.hidden {
-    display: none;
-}
-
 .listen {
     background: #f3f0e8;
     padding: 25px;
@@ -134,45 +113,9 @@ footer {
 
 <div class="container">
 
-    <!-- JOIN PAGE -->
-
-    <div class="join" id="joinSection">
-
-        <h2>Welcome to the Cookbook!</h2>
-
-        <p>
-            Join our cookbook and discover
-            delicious Mediterranean recipes.
-        </p>
-
-        <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-        >
-
-        <br>
-
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-        >
-
-        <br>
-
-        <button onclick="joinSite()">
-            Join Now
-        </button>
-
-    </div>
-
-
     <!-- RECIPE PAGE -->
 
-    <div class="recipe hidden" id="recipeSection">
-
-        <h2 id="welcome"></h2>
+    <div class="recipe" id="recipeSection">
 
         <h2>Gambas al Ajillo</h2>
 
@@ -305,42 +248,11 @@ footer {
 
 <script>
 
-// JOIN WEBSITE
-
-function joinSite() {
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    if (name === "" || email === "") {
-        alert("Please enter your name and email!");
-        return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert("Please enter a valid email address!");
-        return;
-    }
-
-    document.getElementById("joinSection")
-        .classList.add("hidden");
-
-    document.getElementById("recipeSection")
-        .classList.remove("hidden");
-
-    document.getElementById("welcome").innerText =
-        "Welcome, " + name + "! Happy Cooking ❤️";
-}
-
-
 // AUDIO PLAYER
 
 const audio = document.getElementById("recipeAudio");
 
- audio.addEventListener("error", function() {
+audio.addEventListener("error", function() {
 
     document.getElementById("audioMessage").innerText =
         "Could not load synthesize.mp3. Check that the MP3 is uploaded in the website folder and try again.";
